@@ -1,9 +1,5 @@
 grammar SearchString;
-options {
-    language = Java;
-    // Generate visitor
-    visitor = true;
-}
+
 searchString: expression;
 
 expression: logicalExpression;

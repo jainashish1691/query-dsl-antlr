@@ -3,6 +3,7 @@ package com.poc.querydsl.querydsl.reposatiory;
 
 import com.poc.querydsl.querydsl.entity.Person;
 import com.poc.querydsl.querydsl.entity.QPerson;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import java.util.List;
@@ -22,5 +23,12 @@ public class PersonDao {
     final List<Person> ashish = queryFactory.select(QPerson.person).from(QPerson.person)
         .where(QPerson.person.firstname.eq("ASHISH")).fetch();
     System.out.println(ashish);
+  }
+
+  public void search(BooleanExpression predicate) {
+    final JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
+    List<Person> fetch = queryFactory.select(QPerson.person).from(QPerson.person).where(predicate)
+        .fetch();
+    System.out.println(fetch);
   }
 }
