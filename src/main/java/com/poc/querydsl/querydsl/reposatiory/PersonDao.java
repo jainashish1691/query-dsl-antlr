@@ -18,17 +18,11 @@ public class PersonDao {
 
   private final EntityManager entityManager;
 
-  public void test() {
-    final JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
-    final List<Person> ashish = queryFactory.select(QPerson.person).from(QPerson.person)
-        .where(QPerson.person.firstname.eq("ASHISH")).fetch();
-    System.out.println(ashish);
-  }
 
-  public void search(BooleanExpression predicate) {
+  public List<Person> search(BooleanExpression predicate) {
     final JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
-    List<Person> fetch = queryFactory.select(QPerson.person).from(QPerson.person).where(predicate)
+    return queryFactory.select(QPerson.person).from(QPerson.person).where(predicate)
         .fetch();
-    System.out.println(fetch);
+
   }
 }

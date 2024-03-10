@@ -26,8 +26,6 @@ public class PersonService {
     final ParseTree tree = parser.searchString();
     final SearchStringVisitor visitor = new SearchStringVisitor();
     final BooleanExpression predicate = visitor.visit(tree);
-    personDao.search(predicate);
-    return null;
-
+    return personDao.search(predicate);
   }
 }
